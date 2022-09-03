@@ -24,12 +24,16 @@ class _HomeScreenState extends State<HomeScreen> {
             TextField(
               controller: controller,
             ),
-            Text(inputText),
+            Text(
+              box.get(2) ?? 'empty',
+              style: TextStyle(fontSize: 30),
+            ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                setState(() {
-                  inputText = controller.text;
-                });
+                box.put(2, controller.text);
+                setState(() {});
               },
               child: Text('read from textfiled'),
             ),
