@@ -49,6 +49,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 print(text);
               },
               child: Text('read'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
+              onPressed: () {
+                box.put(1, 'Ariana');
+              },
+              child: Text('update'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
+              onPressed: () {
+                box.delete(1);
+              },
+              child: Text('delete'),
             )
           ],
         ),
