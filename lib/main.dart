@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_application/home_screen.dart';
+import 'package:note_application/student.dart';
 
 import 'car.dart';
 
@@ -8,7 +9,9 @@ void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('names');
   Hive.registerAdapter(CarAdapter());
+  Hive.registerAdapter(StudentAdapter());
   await Hive.openBox<Car>('carBox');
+  await Hive.openBox<Student>('studentBox');
   runApp(Application());
 }
 

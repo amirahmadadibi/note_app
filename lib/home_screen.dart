@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_application/student.dart';
 
 import 'car.dart';
 
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var box = Hive.box('names');
   var carBox = Hive.box<Car>('carBox');
+  var studnetBox = Hive.box<Student>('studentBox');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
                 // box.put(1, 'amirahmad');
-                carBox.put(
-                    1, Car(name: 'tesla', topSpeed: 300, price: 12.1212));
+                studnetBox.put(
+                    1,
+                    Student(
+                        name: 'amirahamd',
+                        family: 'adibi',
+                        grade: 12.1,
+                        age: 25));
               },
               child: Text('create'),
             ),
@@ -55,12 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 // var text = box.get(1);
                 // print(text);
-                if (carBox.get(1) == null) {
+                if (studnetBox.get(1) == null) {
                   return;
                 }
-                print(carBox.get(1)!.name);
-                print(carBox.get(1)!.topSpeed);
-                print(carBox.get(1)!.price);
+                print(studnetBox.get(1)!.name);
+                print(studnetBox.get(1)!.family);
+                print(studnetBox.get(1)!.age);
+                print(studnetBox.get(1)!.grade);
               },
               child: Text('read'),
             ),
@@ -68,7 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                carBox.put(1, Car(name: 'teslaY', topSpeed: 250, price: 10000));
+                studnetBox.put(
+                    1,
+                    Student(
+                        name: 'ariana', family: 'adibi', grade: 12.1, age: 25));
               },
               child: Text('update'),
             ),
@@ -76,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                carBox.delete(1);
+                studnetBox.delete(1);
               },
               child: Text('delete'),
             )
