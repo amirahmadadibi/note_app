@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'car.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -13,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var controller = TextEditingController();
 
   var box = Hive.box('names');
-
+  var carBox = Hive.box<Car>('carBox');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                box.put(1, 'amirahmad');
+                // box.put(1, 'amirahmad');
+                carBox.put(
+                    1, Car(name: 'tesla', topSpeed: 300, price: 12.1212));
               },
               child: Text('create'),
             ),
@@ -49,8 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                var text = box.get(1);
-                print(text);
+                // var text = box.get(1);
+                // print(text);
+                if (carBox.get(1) == null) {
+                  return;
+                }
+                print(carBox.get(1)!.name);
+                print(carBox.get(1)!.topSpeed);
+                print(carBox.get(1)!.price);
               },
               child: Text('read'),
             ),
@@ -58,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                box.put(1, 'Ariana');
+                carBox.put(1, Car(name: 'teslaY', topSpeed: 250, price: 10000));
               },
               child: Text('update'),
             ),
@@ -66,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                   primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
               onPressed: () {
-                box.delete(1);
+                carBox.delete(1);
               },
               child: Text('delete'),
             )
