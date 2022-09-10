@@ -27,95 +27,108 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Color(0xffE5E5E5),
       body: Center(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 24),
-          height: 132,
-          width: double.infinity,
+        child: getTaskItem(),
+      ),
+    );
+  }
+
+  Container getTaskItem() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      height: 132,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: getMainContent(),
+      ),
+    );
+  }
+
+  Row getMainContent() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        MSHCheckbox(
+          size: 32,
+          value: isChecked,
+          checkedColor: Color(0xff18DAA3),
+          style: MSHCheckboxStyle.fillScaleCheck,
+          onChanged: (selected) {
+            setState(() {
+              isChecked = selected;
+            });
+          },
+        ),
+        Spacer(),
+        Image.asset('images/workout.png'),
+      ],
+    );
+  }
+
+  Column getTitle() {
+    return Column(
+      children: [
+        Text('testesadfa dfas'),
+        Text('testesadfa dfas'),
+        getTimeAndEditBadgs()
+      ],
+    );
+  }
+
+  Row getTimeAndEditBadgs() {
+    return Row(
+      children: [
+        Container(
+          width: 90,
+          height: 28,
           decoration: BoxDecoration(
-            color: Color(0xffffffff),
-            borderRadius: BorderRadius.circular(10),
+            color: Color(0xff18DAA3),
+            borderRadius: BorderRadius.circular(18),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                MSHCheckbox(
-                  size: 32,
-                  value: isChecked,
-                  checkedColor: Color(0xff18DAA3),
-                  style: MSHCheckboxStyle.fillScaleCheck,
-                  onChanged: (selected) {
-                    setState(() {
-                      isChecked = selected;
-                    });
-                  },
+                Text('10:30'),
+                SizedBox(
+                  width: 10,
                 ),
-                Spacer(),
-                Column(
-                  children: [
-                    Text('testesadfa dfas'),
-                    Text('testesadfa dfas'),
-                    Row(
-                      children: [
-                        Container(
-                          width: 90,
-                          height: 28,
-                          decoration: BoxDecoration(
-                            color: Color(0xff18DAA3),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 12),
-                            child: Row(
-                              children: [
-                                Text('10:30'),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Image.asset('images/icon_time.png'),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          width: 90,
-                          height: 28,
-                          decoration: BoxDecoration(
-                            color: Color(0xffE2F6F1),
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 12),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'ویرایش',
-                                  style: TextStyle(color: Color(0xff18DAA3)),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Image.asset('images/icon_edit.png'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                Image.asset('images/workout.png'),
+                Image.asset('images/icon_time.png'),
               ],
             ),
           ),
         ),
-      ),
+        SizedBox(
+          width: 15,
+        ),
+        Container(
+          width: 90,
+          height: 28,
+          decoration: BoxDecoration(
+            color: Color(0xffE2F6F1),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+            child: Row(
+              children: [
+                Text(
+                  'ویرایش',
+                  style: TextStyle(color: Color(0xff18DAA3)),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset('images/icon_edit.png'),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
