@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     },
                   ),
-                  Text('title')
+                  Text('با دوستام ورزش کنم')
                 ],
               ),
               Text('SECOND TEXT'),
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 15,
         ),
         Container(
-          width: 90,
+          width: 95,
           height: 28,
           decoration: BoxDecoration(
             color: Color(0xffE2F6F1),

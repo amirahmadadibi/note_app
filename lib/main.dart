@@ -21,6 +21,16 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'SM',
+        textTheme: TextTheme(
+          headline4: TextStyle(
+            fontFamily: 'GB',
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
+      ),
       home: HomeScreen(),
     );
   }
