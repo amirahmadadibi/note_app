@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:note_application/student.dart';
 
 import 'car.dart';
@@ -18,80 +19,101 @@ class _HomeScreenState extends State<HomeScreen> {
   var box = Hive.box('names');
   var carBox = Hive.box<Car>('carBox');
   var studnetBox = Hive.box<Student>('studentBox');
+
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffE5E5E5),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: controller,
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 24),
+          height: 132,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Color(0xffffffff),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                MSHCheckbox(
+                  size: 32,
+                  value: isChecked,
+                  checkedColor: Color(0xff18DAA3),
+                  style: MSHCheckboxStyle.fillScaleCheck,
+                  onChanged: (selected) {
+                    setState(() {
+                      isChecked = selected;
+                    });
+                  },
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Text('testesadfa dfas'),
+                    Text('testesadfa dfas'),
+                    Row(
+                      children: [
+                        Container(
+                          width: 90,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: Color(0xff18DAA3),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 6, horizontal: 12),
+                            child: Row(
+                              children: [
+                                Text('10:30'),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Image.asset('images/icon_time.png'),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Container(
+                          width: 90,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: Color(0xffE2F6F1),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 6, horizontal: 12),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'ویرایش',
+                                  style: TextStyle(color: Color(0xff18DAA3)),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Image.asset('images/icon_edit.png'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Image.asset('images/workout.png'),
+              ],
             ),
-            Text(
-              box.get(2) ?? 'empty',
-              style: TextStyle(fontSize: 30),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
-              onPressed: () {
-                box.put(2, controller.text);
-                setState(() {});
-              },
-              child: Text('read from textfiled'),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
-              onPressed: () {
-                // box.put(1, 'amirahmad');
-                studnetBox.put(
-                    1,
-                    Student(
-                        name: 'amirahamd',
-                        family: 'adibi',
-                        grade: 12.1,
-                        age: 25));
-              },
-              child: Text('create'),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
-              onPressed: () {
-                // var text = box.get(1);
-                // print(text);
-                if (studnetBox.get(1) == null) {
-                  return;
-                }
-                print(studnetBox.get(1)!.name);
-                print(studnetBox.get(1)!.family);
-                print(studnetBox.get(1)!.age);
-                print(studnetBox.get(1)!.grade);
-              },
-              child: Text('read'),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
-              onPressed: () {
-                studnetBox.put(
-                    1,
-                    Student(
-                        name: 'ariana', family: 'adibi', grade: 12.1, age: 25));
-              },
-              child: Text('update'),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.black, textStyle: TextStyle(fontSize: 26)),
-              onPressed: () {
-                studnetBox.delete(1);
-              },
-              child: Text('delete'),
-            )
-          ],
+          ),
         ),
       ),
     );
