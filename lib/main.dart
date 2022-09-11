@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_application/add_task_screen.dart';
 import 'package:note_application/home_screen.dart';
 import 'package:note_application/student.dart';
+import 'package:note_application/task.dart';
 
 import 'car.dart';
 
@@ -11,7 +12,9 @@ void main() async {
   var box = await Hive.openBox('names');
   Hive.registerAdapter(CarAdapter());
   Hive.registerAdapter(StudentAdapter());
+  Hive.registerAdapter(TaskAdapter());
   await Hive.openBox<Car>('carBox');
+  await Hive.openBox<Task>('taskBox');
   await Hive.openBox<Student>('studentBox');
   runApp(Application());
 }
