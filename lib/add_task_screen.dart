@@ -133,7 +133,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   addTask(String taskTitle, String taskSubTitle) {
     var task = Task(title: taskTitle, subTitle: taskSubTitle);
-    box.put(1, task);
-    print(box.get(1)!.title);
+    box.add(task);
   }
 }

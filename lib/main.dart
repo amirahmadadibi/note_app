@@ -35,7 +35,7 @@ class Application extends StatelessWidget {
           ),
         ),
       ),
-      home: AddTaskScreen(),
+      home: HomeScreen(),
     );
   }
 }
