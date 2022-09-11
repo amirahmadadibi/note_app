@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_application/add_task_screen.dart';
 import 'package:note_application/home_screen.dart';
 import 'package:note_application/student.dart';
 
@@ -31,7 +32,7 @@ class Application extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeScreen(),
+      home: AddTaskScreen(),
     );
   }
 }
