@@ -51,17 +51,13 @@ class _TaskWidgetState extends State<TaskWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MSHCheckbox(
-                    size: 32,
-                    value: isDone,
-                    checkedColor: Color(0xff18DAA3),
-                    style: MSHCheckboxStyle.fillScaleCheck,
-                    onChanged: (selected) {
-                      setState(() {
-                        isDone = selected;
-                      });
-                    },
-                  ),
+                  Checkbox(
+                      value: isDone,
+                      onChanged: (isChecked) {
+                        setState(() {
+                          isDone = isChecked!;
+                        });
+                      }),
                   Text(widget.task.title)
                 ],
               ),
