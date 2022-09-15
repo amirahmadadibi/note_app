@@ -13,6 +13,13 @@ class _TaskWidgetState extends State<TaskWidget> {
   bool isBoxChecked = false;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isBoxChecked = widget.task.isDone;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return getTaskItem();
   }
