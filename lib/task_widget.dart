@@ -22,6 +22,8 @@ class _TaskWidgetState extends State<TaskWidget> {
       onTap: () {
         setState(() {
           isBoxChecked = !isBoxChecked;
+          widget.task.isDone = isBoxChecked;
+          widget.task.save();
         });
       },
       child: Container(
@@ -51,7 +53,10 @@ class _TaskWidgetState extends State<TaskWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Checkbox(value: isBoxChecked, onChanged: (isChecked) {}),
+                  Checkbox(
+                    value: isBoxChecked,
+                    onChanged: (isChecked) {},
+                  ),
                   Text(widget.task.title)
                 ],
               ),
