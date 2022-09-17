@@ -29,7 +29,7 @@ class Application extends StatelessWidget {
           ),
         ),
       ),
-      home: TestScreen(),
+      home: HomeScreen(),
     );
   }
 }
