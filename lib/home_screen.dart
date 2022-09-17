@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:note_application/add_task_screen.dart';
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var box = Hive.box('names');
   var taskBox = Hive.box<Task>('taskBox');
+  bool isFabVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -27,26 +29,43 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ValueListenableBuilder(
           valueListenable: taskBox.listenable(),
           builder: (context, value, child) {
-            return ListView.builder(
-              itemCount: taskBox.values.length,
-              itemBuilder: ((context, index) {
-                var task = taskBox.values.toList()[index];
-                return TaskWidget(task: task);
-              }),
+            return NotificationListener<UserScrollNotification>(
+              onNotification: (notif) {
+                setState(() {
+                  if (notif.direction == ScrollDirection.forward) {
+                    isFabVisible = true;
+                  }
+                  if (notif.direction == ScrollDirection.reverse) {
+                    isFabVisible = false;
+                  }
+                });
+
+                return true;
+              },
+              child: ListView.builder(
+                itemCount: taskBox.values.length,
+                itemBuilder: ((context, index) {
+                  var task = taskBox.values.toList()[index];
+                  return TaskWidget(task: task);
+                }),
+              ),
             );
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => AddTaskScreen(),
-            ),
-          );
-        },
-        backgroundColor: Color(0xff18DAA3),
-        child: Image.asset('images/icon_add.png'),
+      floatingActionButton: Visibility(
+        visible: isFabVisible,
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AddTaskScreen(),
+              ),
+            );
+          },
+          backgroundColor: Color(0xff18DAA3),
+          child: Image.asset('images/icon_add.png'),
+        ),
       ),
     );
   }
