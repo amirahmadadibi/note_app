@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
+import 'package:note_application/edit_task_screen.dart';
 import 'package:note_application/task.dart';
 
 class TaskWidget extends StatefulWidget {
@@ -110,26 +111,34 @@ class _TaskWidgetState extends State<TaskWidget> {
         SizedBox(
           width: 15,
         ),
-        Container(
-          width: 95,
-          height: 28,
-          decoration: BoxDecoration(
-            color: Color(0xffE2F6F1),
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-            child: Row(
-              children: [
-                Text(
-                  'ویرایش',
-                  style: TextStyle(color: Color(0xff18DAA3)),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Image.asset('images/icon_edit.png'),
-              ],
+        InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => EditTaskScreen(
+                      task: widget.task,
+                    )));
+          },
+          child: Container(
+            width: 95,
+            height: 28,
+            decoration: BoxDecoration(
+              color: Color(0xffE2F6F1),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+              child: Row(
+                children: [
+                  Text(
+                    'ویرایش',
+                    style: TextStyle(color: Color(0xff18DAA3)),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Image.asset('images/icon_edit.png'),
+                ],
+              ),
             ),
           ),
         ),
