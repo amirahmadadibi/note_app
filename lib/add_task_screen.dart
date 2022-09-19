@@ -17,6 +17,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   final TextEditingController controllerTaskSubTitle = TextEditingController();
 
   final box = Hive.box<Task>('taskBox');
+
+  DateTime? _time;
   @override
   void initState() {
     // TODO: implement initState
@@ -130,8 +132,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
                 onPositivePressed: (context, time) {
-                  print(time.hour);
-                  print(time.minute);
+                  _time = time;
                 },
                 onNegativePressed: (context) {},
               ),
@@ -160,7 +161,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 
   addTask(String taskTitle, String taskSubTitle) {
-    var task = Task(title: taskTitle, subTitle: taskSubTitle);
+    var task = Task(title: taskTitle, subTitle: taskSubTitle, time: _time!);
     box.add(task);
   }
 }

@@ -99,7 +99,13 @@ class _TaskWidgetState extends State<TaskWidget> {
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
             child: Row(
               children: [
-                Text('10:30'),
+                Text(
+                  '${widget.task.time.hour}:${widget.task.time.minute}',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14),
+                ),
                 SizedBox(
                   width: 10,
                 ),
