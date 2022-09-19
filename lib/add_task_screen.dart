@@ -21,6 +21,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   final box = Hive.box<Task>('taskBox');
 
   DateTime? _time;
+
+  int _selectedTaskTypeitem = 0;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -145,8 +148,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: getTaskTypeList().length,
                 itemBuilder: (context, index) {
-                  return TaskTypeItemList(
-                    taskType: getTaskTypeList()[index],
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        _selectedTaskTypeitem = index;
+                      });
+                    },
+                    child: TaskTypeItemList(
+                      taskType: getTaskTypeList()[index],
+                      index: index,
+                      selectedItemList: _selectedTaskTypeitem,
+                    ),
                   );
                 },
               ),
@@ -181,12 +193,25 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 }
 
 class TaskTypeItemList extends StatelessWidget {
-  TaskTypeItemList({Key? key, required this.taskType}) : super(key: key);
+  TaskTypeItemList(
+      {Key? key,
+      required this.taskType,
+      required this.index,
+      required this.selectedItemList})
+      : super(key: key);
 
   TaskType taskType;
+
+  int index;
+  int selectedItemList;
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          border: Border.all(
+              color: (selectedItemList == index) ? Colors.green : Colors.grey,
+              width: (selectedItemList == index) ? 3 : 2),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
       margin: EdgeInsets.all(8),
       width: 140,
       child: Column(
