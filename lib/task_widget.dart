@@ -154,7 +154,8 @@ class _TaskWidgetState extends State<TaskWidget> {
 
   String getMinUndterTen(DateTime time) {
     if (time.minute < 10) {
-      return '0${time.minute}';
+      //9-1
+      return '0${time.minute}'; //9 09 8 08 0 00
     } else {
       return time.minute.toString();
     }
