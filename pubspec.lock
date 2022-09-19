@@ -256,6 +256,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  infinite_listview:
+    dependency: transitive
+    description:
+      name: infinite_listview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   io:
     dependency: transitive
     description:
@@ -319,6 +326,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  numberpicker:
+    dependency: transitive
+    description:
+      name: numberpicker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
   package_config:
     dependency: transitive
     description:
@@ -506,6 +520,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.9"
+  time_pickerr:
+    dependency: "direct main"
+    description:
+      name: time_pickerr
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   timing:
     dependency: transitive
     description:

@@ -32,6 +32,8 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   msh_checkbox: ^1.1.1
+  time_pickerr: ^1.0.6
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

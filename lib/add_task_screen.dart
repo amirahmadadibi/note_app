@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_application/task.dart';
+import 'package:time_pickerr/time_pickerr.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({Key? key}) : super(key: key);
@@ -107,6 +108,32 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                   ),
                 ),
+              ),
+            ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: CustomHourPicker(
+                title: 'زمان تسک رو انتخاب کن',
+                negativeButtonText: 'حذف کن',
+                positiveButtonText: 'انتخاب زمان',
+                elevation: 2,
+                titleStyle: TextStyle(
+                    color: Color(0xff18DAA3),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                negativeButtonStyle: TextStyle(
+                    color: Color.fromARGB(255, 218, 66, 24),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                positiveButtonStyle: TextStyle(
+                    color: Color(0xff18DAA3),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                onPositivePressed: (context, time) {
+                  print(time.hour);
+                  print(time.minute);
+                },
+                onNegativePressed: (context) {},
               ),
             ),
             Spacer(),
