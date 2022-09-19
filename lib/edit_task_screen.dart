@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_application/task.dart';
+import 'package:time_pickerr/time_pickerr.dart';
 
 class EditTaskScreen extends StatefulWidget {
   EditTaskScreen({Key? key, required this.task}) : super(key: key);
@@ -14,7 +15,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   FocusNode negahban2 = FocusNode();
   TextEditingController? controllerTaskTitle;
   TextEditingController? controllerTaskSubTitle;
-
+  DateTime? _time;
   final box = Hive.box<Task>('taskBox');
   @override
   void initState() {
@@ -113,6 +114,31 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 ),
               ),
             ),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: CustomHourPicker(
+                title: 'زمان تسک رو انتخاب کن',
+                negativeButtonText: 'حذف کن',
+                positiveButtonText: 'انتخاب زمان',
+                elevation: 2,
+                titleStyle: TextStyle(
+                    color: Color(0xff18DAA3),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                negativeButtonStyle: TextStyle(
+                    color: Color.fromARGB(255, 218, 66, 24),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                positiveButtonStyle: TextStyle(
+                    color: Color(0xff18DAA3),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+                onPositivePressed: (context, time) {
+                  _time = time;
+                },
+                onNegativePressed: (context) {},
+              ),
+            ),
             Spacer(),
             ElevatedButton(
               onPressed: () {
@@ -139,6 +165,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   editTask(String taskTitle, String taskSubTitle) {
     widget.task.title = taskTitle;
     widget.task.subTitle = taskSubTitle;
+    widget.task.time = _time!;
     widget.task.save();
   }
 }
