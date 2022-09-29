@@ -3,12 +3,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:note_application/add_task_screen.dart';
 import 'package:note_application/home_screen.dart';
 import 'package:note_application/task.dart';
+import 'package:note_application/task_type.dart';
 import 'package:note_application/test_screen.dart';
+import 'package:note_application/type_enum.dart';
 
 void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('names');
   Hive.registerAdapter(TaskAdapter());
+  Hive.registerAdapter(TaskTypeAdapter());
+  Hive.registerAdapter(TaskTypeEnumAdapter());
   await Hive.openBox<Task>('taskBox');
   runApp(Application());
 }
