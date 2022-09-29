@@ -1,5 +1,9 @@
+import 'package:hive/hive.dart';
 import 'package:note_application/type_enum.dart';
 
+part 'task_type.g.dart';
+
+@HiveType(typeId: 4)
 class TaskType {
   TaskType({
     required this.image,
@@ -7,7 +11,12 @@ class TaskType {
     required this.taskTypeEnum,
   });
 
+  @HiveField(0)
   String image;
+
+  @HiveField(1)
   String title;
-  Enum taskTypeEnum;
+
+  @HiveField(2)
+  TaskTypeEnum taskTypeEnum;
 }
