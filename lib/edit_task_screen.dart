@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:note_application/task.dart';
 import 'package:note_application/task_type.dart';
+import 'package:note_application/task_type_item.dart';
 import 'package:note_application/utility.dart';
 import 'package:time_pickerr/time_pickerr.dart';
 
@@ -200,37 +201,5 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     widget.task.time = _time!;
     widget.task.taskType = getTaskTypeList()[_selectedTaskTypeitem];
     widget.task.save();
-  }
-}
-
-class TaskTypeItemList extends StatelessWidget {
-  TaskTypeItemList(
-      {Key? key,
-      required this.taskType,
-      required this.index,
-      required this.selectedItemList})
-      : super(key: key);
-
-  TaskType taskType;
-
-  int index;
-  int selectedItemList;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(
-              color: (selectedItemList == index) ? Colors.green : Colors.grey,
-              width: (selectedItemList == index) ? 3 : 2),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      margin: EdgeInsets.all(8),
-      width: 140,
-      child: Column(
-        children: [
-          Image.asset(taskType.image),
-          Text(taskType.title),
-        ],
-      ),
-    );
   }
 }
