@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
-import 'package:note_application/edit_task_screen.dart';
-import 'package:note_application/task.dart';
+import 'package:note_application/screens/edit_task_screen.dart';
+
+import '../data/task.dart';
 
 class TaskWidget extends StatefulWidget {
   TaskWidget({Key? key, required this.task}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:note_application/task.dart';
-import 'package:note_application/task_type.dart';
-import 'package:note_application/task_type_item.dart';
-import 'package:note_application/utility.dart';
+import 'package:note_application/widget/task_type_item.dart';
+import 'package:note_application/utility/utility.dart';
 import 'package:time_pickerr/time_pickerr.dart';
+
+import '../data/task.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({Key? key}) : super(key: key);

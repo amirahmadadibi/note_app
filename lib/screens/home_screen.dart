@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:msh_checkbox/msh_checkbox.dart';
-import 'package:note_application/add_task_screen.dart';
-import 'package:note_application/task.dart';
-import 'package:note_application/task_widget.dart';
+import 'package:note_application/screens/add_task_screen.dart';
+import 'package:note_application/widget/task_widget.dart';
+
+import '../data/task.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
