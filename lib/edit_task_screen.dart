@@ -37,6 +37,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
     negahban2.addListener(() {
       setState(() {});
     });
+
+    var index = getTaskTypeList().indexWhere((element) {
+      return element.taskTypeEnum == widget.task.taskType.taskTypeEnum;
+    });
+
+    _selectedTaskTypeitem = index;
   }
 
   @override
